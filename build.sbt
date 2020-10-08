@@ -4,7 +4,7 @@ val scala213Version = "2.13.1"
 lazy val root = project
   .in(file("."))
   .settings(
-    name := "dotty-cross",
+    name := "lib",
     version := "0.1.0",
 
     libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test",
