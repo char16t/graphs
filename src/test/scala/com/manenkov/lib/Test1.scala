@@ -5,20 +5,21 @@ import org.junit.Test
 
 class Test1 {
   @Test def initEmptyUndirectedGraphFromEdges(): Unit = {
-    val graph = UndirectedGraph.fromEdges()
+    val graph = UndirectedGraph.fromVerticesAndEdges()
     assertEquals(graph.edges, Set())
     assertEquals(graph.vertices, Set())
   }
 
   @Test def initEmptyDirectedGraphFromEdges(): Unit = {
-    val graph = DirectedGraph.fromEdges()
+    val graph = DirectedGraph.fromVerticesAndEdges()
     assertEquals(graph.edges, Set())
     assertEquals(graph.vertices, Set())
   }
 
   @Test def initUndirectedGraphFromEdges(): Unit = {
-    val graph = UndirectedGraph.fromEdges(
-      (1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)
+    val graph = UndirectedGraph.fromVerticesAndEdges(
+      vertices = 1 to 7,
+      edges = Seq((1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7))
     )
     assertEquals(graph.edges, Set(
       UndirectedEdge(Vertice(1), Vertice(2)),
@@ -31,9 +32,26 @@ class Test1 {
     assertEquals(graph.vertices, (1 to 7).map(Vertice(_)).toSet)
   }
 
+  @Test def initUndirectedUnconnectedGraphFromEdges(): Unit = {
+    val graph = UndirectedGraph.fromVerticesAndEdges(
+      vertices = 1 to 9,
+      edges = Seq((1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7))
+    )
+    assertEquals(graph.edges, Set(
+      UndirectedEdge(Vertice(1), Vertice(2)),
+      UndirectedEdge(Vertice(1), Vertice(3)),
+      UndirectedEdge(Vertice(2), Vertice(4)),
+      UndirectedEdge(Vertice(2), Vertice(5)),
+      UndirectedEdge(Vertice(3), Vertice(6)),
+      UndirectedEdge(Vertice(3), Vertice(7))
+    ))
+    assertEquals(graph.vertices, (1 to 9).map(Vertice(_)).toSet)
+  }
+
   @Test def initDirectedGraphFromEdges(): Unit = {
-    val graph = DirectedGraph.fromEdges(
-      (1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)
+    val graph = DirectedGraph.fromVerticesAndEdges(
+      vertices = 1 to 7,
+      edges = Seq((1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7))
     )
     assertEquals(graph.edges, Set(
       DirectedEdge(Vertice(1), Vertice(2)),
@@ -44,6 +62,22 @@ class Test1 {
       DirectedEdge(Vertice(3), Vertice(7))
     ))
     assertEquals(graph.vertices, (1 to 7).map(Vertice(_)).toSet)
+  }
+
+  @Test def initDirectedUnconnectedGraphFromEdges(): Unit = {
+    val graph = DirectedGraph.fromVerticesAndEdges(
+      vertices = 1 to 9,
+      edges = Seq((1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7))
+    )
+    assertEquals(graph.edges, Set(
+      DirectedEdge(Vertice(1), Vertice(2)),
+      DirectedEdge(Vertice(1), Vertice(3)),
+      DirectedEdge(Vertice(2), Vertice(4)),
+      DirectedEdge(Vertice(2), Vertice(5)),
+      DirectedEdge(Vertice(3), Vertice(6)),
+      DirectedEdge(Vertice(3), Vertice(7))
+    ))
+    assertEquals(graph.vertices, (1 to 9).map(Vertice(_)).toSet)
   }
 
   @Test def initDirectedGraphFromAdjacencyMatrix(): Unit = {

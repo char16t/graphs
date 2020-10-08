@@ -6,8 +6,8 @@ import scala.collection.mutable.ListBuffer
 class DirectedGraph[T](vs: Set[Vertice[T]], es: Set[DirectedEdge[T]]) extends Graph(vs, es)
 
 object DirectedGraph {
-  def fromEdges[T](edges: (T, T)*): DirectedGraph[T] = {
-    val v = edges.flatMap(pair => List(pair._1, pair._2)).toSet.map(Vertice(_))
+  def fromVerticesAndEdges[T](vertices: Seq[T] = Seq(), edges: Seq[(T, T)] = Seq()): DirectedGraph[T] = {
+    val v = edges.flatMap(pair => List(pair._1, pair._2)).toSet.map(Vertice(_)).concat(vertices.map(Vertice(_)))
     val e = edges.map(pair => DirectedEdge(Vertice(pair._1), Vertice(pair._2))).toSet
     new DirectedGraph[T](v, e)
   }

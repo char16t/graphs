@@ -6,8 +6,8 @@ import scala.collection.mutable.ListBuffer
 class UndirectedGraph[T](vs: Set[Vertice[T]], es: Set[UndirectedEdge[T]]) extends Graph(vs, es)
 
 object UndirectedGraph {
-  def fromEdges[T](edges: (T, T)*): UndirectedGraph[T] = {
-    val v = edges.flatMap(pair => List(pair._1, pair._2)).toSet.map(Vertice(_))
+  def fromVerticesAndEdges[T](vertices: Seq[T] = Seq(), edges: Seq[(T, T)] = Seq()): UndirectedGraph[T] = {
+    val v = edges.flatMap(pair => List(pair._1, pair._2)).toSet.map(Vertice(_)).concat(vertices.map(Vertice(_)))
     val e = edges.map(pair => UndirectedEdge(Vertice(pair._1), Vertice(pair._2))).toSet
     new UndirectedGraph[T](v, e)
   }
