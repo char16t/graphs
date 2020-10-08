@@ -3,22 +3,22 @@ package com.manenkov.lib
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
-class UndirectedGraph[T](vertices: Set[Vertice[T]], edges: Set[Edge[T]]) extends Graph[T](vertices, edges)
+class UndirectedGraph[T](vs: Set[Vertice[T]], es: Set[UndirectedEdge[T]]) extends Graph(vs, es)
 
 object UndirectedGraph {
   def fromEdges[T](edges: (T, T)*): UndirectedGraph[T] = {
     val v = edges.flatMap(pair => List(pair._1, pair._2)).toSet.map(Vertice(_))
-    val e = edges.map(pair => Edge(Vertice(pair._1), Vertice(pair._2))).toSet
+    val e = edges.map(pair => UndirectedEdge(Vertice(pair._1), Vertice(pair._2))).toSet
     new UndirectedGraph[T](v, e)
   }
 
   def fromAdjacencyMatrix[T](matrix: Array[Array[Int]], labels: Vector[T]): UndirectedGraph[T] = {
     val v = ListBuffer[Vertice[T]]()
-    val e = ListBuffer[Edge[T]]()
+    val e = ListBuffer[UndirectedEdge[T]]()
     for (i <- matrix.indices) {
       v.append(Vertice(labels(i)))
       for (j <- i until matrix(i).length) {
-        if (i != j && matrix(i)(j) == 1) e.append(Edge(Vertice(labels(i)), Vertice(labels(j))))
+        if (i != j && matrix(i)(j) == 1) e.append(UndirectedEdge(Vertice(labels(i)), Vertice(labels(j))))
       }
     }
     new UndirectedGraph[T](v.toSet, e.toSet)
@@ -26,11 +26,11 @@ object UndirectedGraph {
 
   def fromAdjacencyList[T](adjacencyList: Map[T, List[T]]): UndirectedGraph[T] = {
     val v = mutable.Set.from[Vertice[T]](adjacencyList.keySet.map(Vertice(_)))
-    val e = ListBuffer[Edge[T]]()
+    val e = ListBuffer[UndirectedEdge[T]]()
     for (connections <- adjacencyList) {
       val from = Vertice(connections._1)
       for (to <- connections._2) {
-        e.append(Edge(from, Vertice(to)))
+        e.append(UndirectedEdge(from, Vertice(to)))
         v.add(Vertice(to))
       }
     }
@@ -55,6 +55,6 @@ object UndirectedGraph {
         }
       }
     }
-    new UndirectedGraph[T](v.toSet, idx.values.map(edge => Edge(edge._1.get, edge._2.get)).toSet)
+    new UndirectedGraph[T](v.toSet, idx.values.map(edge => UndirectedEdge(edge._1.get, edge._2.get)).toSet)
   }
 }

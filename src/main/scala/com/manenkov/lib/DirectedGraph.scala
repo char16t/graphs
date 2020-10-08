@@ -3,22 +3,22 @@ package com.manenkov.lib
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
-class DirectedGraph[T](vertices: Set[Vertice[T]], edges: Set[Edge[T]]) extends Graph[T](vertices, edges)
+class DirectedGraph[T](vs: Set[Vertice[T]], es: Set[DirectedEdge[T]]) extends Graph(vs, es)
 
 object DirectedGraph {
   def fromEdges[T](edges: (T, T)*): DirectedGraph[T] = {
     val v = edges.flatMap(pair => List(pair._1, pair._2)).toSet.map(Vertice(_))
-    val e = edges.map(pair => Edge(Vertice(pair._1), Vertice(pair._2))).toSet
+    val e = edges.map(pair => DirectedEdge(Vertice(pair._1), Vertice(pair._2))).toSet
     new DirectedGraph[T](v, e)
   }
 
   def fromAdjacencyMatrix[T](matrix: Array[Array[Int]], labels: Vector[T]): DirectedGraph[T] = {
     val v = ListBuffer[Vertice[T]]()
-    val e = ListBuffer[Edge[T]]()
+    val e = ListBuffer[DirectedEdge[T]]()
     for (i <- matrix.indices) {
       v.append(Vertice(labels(i)))
       for (j <- i until matrix(i).length) {
-        if (i != j && matrix(i)(j) == 1) e.append(Edge(Vertice(labels(i)), Vertice(labels(j))))
+        if (i != j && matrix(i)(j) == 1) e.append(DirectedEdge(Vertice(labels(i)), Vertice(labels(j))))
       }
     }
     new DirectedGraph[T](v.toSet, e.toSet)
@@ -26,11 +26,11 @@ object DirectedGraph {
 
   def fromAdjacencyList[T](adjacencyList: Map[T, List[T]]): DirectedGraph[T] = {
     val v = mutable.Set.from[Vertice[T]](adjacencyList.keySet.map(Vertice(_)))
-    val e = ListBuffer[Edge[T]]()
+    val e = ListBuffer[DirectedEdge[T]]()
     for (connections <- adjacencyList) {
       val from = Vertice(connections._1)
       for (to <- connections._2) {
-        e.append(Edge(from, Vertice(to)))
+        e.append(DirectedEdge(from, Vertice(to)))
         v.add(Vertice(to))
       }
     }
@@ -62,6 +62,6 @@ object DirectedGraph {
         }
       }
     }
-    new DirectedGraph[T](v.toSet, idx.values.map(edge => Edge(edge._1.get, edge._2.get)).toSet)
+    new DirectedGraph[T](v.toSet, idx.values.map(edge => DirectedEdge(edge._1.get, edge._2.get)).toSet)
   }
 }
