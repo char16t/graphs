@@ -25,7 +25,7 @@ abstract class Graph[T, V <: Vertice[T], E <: Edge[T]](val vertices: Set[V], val
             case _ => acc
           }
         })
-        .filter(!visited.contains(_))
+          .filter(!visited.contains(_))
       queue.enqueueAll(neighbors)
       visited.addAll(neighbors)
     }

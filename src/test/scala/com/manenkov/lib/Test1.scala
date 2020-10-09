@@ -121,7 +121,7 @@ class Test1 {
         Array(0, 0, 1, 0, 0, 1, 0),
         Array(0, 0, 1, 0, 0, 0, 1)
       ),
-      Vector('A', 'B','C', 'D', 'E', 'F', 'G')
+      Vector('A', 'B', 'C', 'D', 'E', 'F', 'G')
     )
     assertEquals(graph.edges, Set(
       DirectedEdge(Vertice('A'), Vertice('B')),
@@ -145,7 +145,7 @@ class Test1 {
         Array(0, 0, 1, 0, 0, 1, 0),
         Array(0, 0, 1, 0, 0, 0, 1)
       ),
-      Vector('A', 'B','C', 'D', 'E', 'F', 'G')
+      Vector('A', 'B', 'C', 'D', 'E', 'F', 'G')
     )
     assertEquals(graph.edges, Set(
       UndirectedEdge(Vertice('A'), Vertice('B')),
@@ -303,7 +303,7 @@ class Test1 {
     )
   }
 
-  @Test def bfs(): Unit = {
+  @Test def bfsOnUndirectedGraph(): Unit = {
     val graph = UndirectedGraph.fromEdges(
       (1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)
     )
@@ -317,7 +317,7 @@ class Test1 {
     )
   }
 
-  @Test def dfs(): Unit = {
+  @Test def dfsOnUndirectedGraph(): Unit = {
     val graph = UndirectedGraph.fromEdges(
       (1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)
     )
@@ -327,6 +327,34 @@ class Test1 {
     )
     assertEquals(
       Seq(Vertice(4), Vertice(2), Vertice(1), Vertice(3), Vertice(6), Vertice(7), Vertice(5)),
+      graph.dfs()
+    )
+  }
+
+  @Test def bfsOnDirectedGraph(): Unit = {
+    val graph = DirectedGraph.fromEdges(
+      (1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)
+    )
+    assertEquals(
+      Seq(Vertice(1), Vertice(3), Vertice(2), Vertice(7), Vertice(6), Vertice(5), Vertice(4)),
+      graph.bfs(Vertice(1))
+    )
+    assertEquals(
+      Seq(Vertice(4), Vertice(2), Vertice(1), Vertice(5), Vertice(3), Vertice(7), Vertice(6)),
+      graph.bfs()
+    )
+  }
+
+  @Test def dfsOnDirectedGraph(): Unit = {
+    val graph = DirectedGraph.fromEdges(
+      (1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)
+    )
+    assertEquals(
+      Seq(Vertice(1), Vertice(2), Vertice(4), Vertice(5), Vertice(3), Vertice(6), Vertice(7)),
+      graph.dfs(Vertice(1))
+    )
+    assertEquals(
+      Seq(Vertice(4), Vertice(2), Vertice(5), Vertice(1), Vertice(3), Vertice(6), Vertice(7)),
       graph.dfs()
     )
   }
