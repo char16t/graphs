@@ -302,4 +302,32 @@ class Test1 {
       )
     )
   }
+
+  @Test def bfs(): Unit = {
+    val graph = UndirectedGraph.fromEdges(
+      (1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)
+    )
+    assertEquals(
+      Seq(Vertice(1), Vertice(3), Vertice(2), Vertice(7), Vertice(6), Vertice(4), Vertice(5)),
+      graph.bfs(Vertice(1))
+    )
+    assertEquals(
+      Seq(Vertice(4), Vertice(2), Vertice(5), Vertice(1), Vertice(3), Vertice(7), Vertice(6)),
+      graph.bfs()
+    )
+  }
+
+  @Test def dfs(): Unit = {
+    val graph = UndirectedGraph.fromEdges(
+      (1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)
+    )
+    assertEquals(
+      Seq(Vertice(1), Vertice(2), Vertice(5), Vertice(4), Vertice(3), Vertice(6), Vertice(7)),
+      graph.dfs(Vertice(1))
+    )
+    assertEquals(
+      Seq(Vertice(4), Vertice(2), Vertice(1), Vertice(3), Vertice(6), Vertice(7), Vertice(5)),
+      graph.dfs()
+    )
+  }
 }
