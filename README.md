@@ -1,5 +1,6 @@
 Graphs for Scala. Cross-compiled with Dotty and Scala 2.
 
+[ ![Download](https://api.bintray.com/packages/char16t/maven/graphs-preview/images/download.svg) ](https://bintray.com/char16t/maven/graphs-preview/_latestVersion)
 [![Build Status](https://travis-ci.com/char16t/graphs.svg?branch=master)](https://travis-ci.com/char16t/graphs)
 [![codecov](https://codecov.io/gh/char16t/graphs/branch/master/graph/badge.svg?token=0ETTLQ0OID)](https://codecov.io/gh/char16t/graphs)
 
@@ -16,7 +17,6 @@ Work in progress. Not available to usage.
 ### Usage
 
 ***From Bintray***
- [ ![Download](https://api.bintray.com/packages/char16t/maven/graphs-preview/images/download.svg) ](https://bintray.com/char16t/maven/graphs-preview/_latestVersion)
 
 Add to your `build.sbt`:
 
