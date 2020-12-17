@@ -1,6 +1,7 @@
 Graphs for Scala. Cross-compiled with Dotty and Scala 2.
 
 [![Build Status](https://travis-ci.com/char16t/graphs.svg?branch=master)](https://travis-ci.com/char16t/graphs)
+[![codecov](https://codecov.io/gh/char16t/graphs/branch/master/graph/badge.svg?token=0ETTLQ0OID)](https://codecov.io/gh/char16t/graphs)
 
 Work in progress. Not available to usage.
 
