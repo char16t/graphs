@@ -4,7 +4,9 @@ Work in progress. Not available to usage.
 
 ### Build
 
- * Compile code with `sbt compile` 
+ * Compile code with `sbt +compile` 
+ * Test code with `sbt +test`
+ * Check test coverage with `sbt coverageReport` 
  * Run it with `sbt run`
  * `sbt console` will start a Dotty REPL. 
 
@@ -18,7 +20,7 @@ Add to your `build.sbt`:
 ```scala
 resolvers += Resolver.jcenterRepo
 resolvers += Resolver.bintrayRepo("char16t", "maven")
-libraryDependencies += "com.manenkov" %% "graphs-preview" % "0.1"
+libraryDependencies += "com.manenkov" %% "graphs-preview" % "0.2"
 ```
 
 ***From source code***
@@ -32,7 +34,7 @@ sbt publishLocal
 
 Add to your `build.sbt` (Scala 2.13.1 or higher):
 ```scala
-libraryDependencies += "com.manenkov" %% "graphs-preview" % "0.1"
+libraryDependencies += "com.manenkov" %% "graphs-preview" % "0.2"
 ```
 
-Now you can see usage in [tests](src/test/scala/com/manenkov/lib/Test1.scala). This document will be updated later.
+Now you can see usage in [tests](src/test/scala/com/manenkov/lib/AllTests.scala). This document will be updated later.

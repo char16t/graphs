@@ -10,13 +10,13 @@ lazy val root = project
     publishTo := Some("bintray" at "https://api.bintray.com/maven/char16t/maven/graphs-preview/;publish=1"),
     organization := "com.manenkov",
     name := "graphs-preview",
-    version := "0.1.0",
+    version := "0.2.0",
 
     libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test",
 
     // To make the default compiler and REPL use Dotty
-    scalaVersion := dottyVersion,
+    scalaVersion := scala213Version,
 
     // To cross compile with Dotty and Scala 2
-    crossScalaVersions := Seq(dottyVersion, scala213Version)
+    crossScalaVersions := Seq(scala213Version, dottyVersion)
   )

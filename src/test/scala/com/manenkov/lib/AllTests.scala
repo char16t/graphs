@@ -1,9 +1,12 @@
 package com.manenkov.lib
 
+import com.manenkov.lib.undirected.UndirectedEdge
+import com.manenkov.lib.directed.{DirectedEdge, DirectedGraph}
+import com.manenkov.lib.undirected.UndirectedGraph
 import org.junit.Assert._
 import org.junit.Test
 
-class Test1 {
+class AllTests {
   @Test def initEmptyUndirectedGraphFromEdges(): Unit = {
     val graph = UndirectedGraph.fromVerticesAndEdges()
     assertEquals(graph.edges, Set())

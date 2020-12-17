@@ -1,6 +1,8 @@
-package com.manenkov.lib
+package com.manenkov.lib.undirected
 
-case class UndirectedEdge[T](override val from: Vertice[T], override val to: Vertice[T]) extends Edge[T](from, to) {
+import com.manenkov.lib.{Edge, Vertice}
+
+case class UndirectedEdge[T](override val from: Vertice[T], override val to: Vertice[T]) extends Edge[T] {
   override def equals(that: Any): Boolean = that match {
     case that: UndirectedEdge[T] => (that canEqual this) && (
       this.from == that.from && this.to == that.to ||

@@ -1,12 +1,15 @@
 package com.manenkov.lib
 
-import scala.collection.immutable.Set
 import scala.collection.mutable
 
-abstract class Graph[T, V <: Vertice[T], E <: Edge[T]](val vertices: Set[V], val edges: Set[E]) {
-  def bfs(): Seq[V] = bfs(vertices.head)
+abstract class Graph[T, E <: Edge[T]] extends TraversableGraph[Vertice[T]] {
+  val vertices: Set[Vertice[T]]
+  val edges: Set[E]
 
-  def bfs(root: V): Seq[V] = {
+  override def bfs(): Seq[Vertice[T]] = bfs(vertices.head)
+
+  override def bfs(root: Vertice[T]): Seq[Vertice[T]] = {
+    type V = Vertice[T]
     val answer = mutable.ListBuffer[V]()
     val visited = mutable.Set[V]()
     val queue = mutable.Queue[V]()
@@ -32,9 +35,10 @@ abstract class Graph[T, V <: Vertice[T], E <: Edge[T]](val vertices: Set[V], val
     answer.toSeq
   }
 
-  def dfs(): Seq[V] = dfs(vertices.head)
+  override def dfs(): Seq[Vertice[T]] = dfs(vertices.head)
 
-  def dfs(root: V): Seq[V] = {
+  override def dfs(root: Vertice[T]): Seq[Vertice[T]] = {
+    type V = Vertice[T]
     val answer = mutable.ListBuffer[V]()
     val visited = mutable.Set[V]()
     val stack = mutable.Stack[V]()
