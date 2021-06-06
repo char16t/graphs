@@ -1,16 +1,16 @@
-val dottyVersion = "0.27.0-RC1"
-val scala213Version = "2.13.1"
+val dottyVersion = "3.0.0"
+val scala213Version = "2.13.6"
 
 lazy val root = project
   .in(file("."))
   .settings(
     licenses += ("MIT", url("https://opensource.org/licenses/MIT/")),
-    bintrayOrganization := Some("char16t"),
-    bintrayRepository := "maven",
-    publishTo := Some("bintray" at "https://api.bintray.com/maven/char16t/maven/graphs-preview/;publish=1"),
+    githubOwner := "char16t",
+    githubRepository := "graphs",
+    githubTokenSource := TokenSource.GitConfig("github.token"),
     organization := "com.manenkov",
     name := "graphs-preview",
-    version := "0.2.0",
+    version := "0.2.2",
 
     libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test",
 

@@ -1,6 +1,5 @@
 Graphs for Scala. Cross-compiled with Dotty and Scala 2.
 
-[ ![Download](https://api.bintray.com/packages/char16t/maven/graphs-preview/images/download.svg) ](https://bintray.com/char16t/maven/graphs-preview/_latestVersion)
 [![Build Status](https://travis-ci.com/char16t/graphs.svg?branch=master)](https://travis-ci.com/char16t/graphs)
 [![codecov](https://codecov.io/gh/char16t/graphs/branch/master/graph/badge.svg?token=0ETTLQ0OID)](https://codecov.io/gh/char16t/graphs)
 
@@ -18,13 +17,7 @@ Work in progress. Not available to usage.
 
 ***From Bintray***
 
-Add to your `build.sbt`:
-
-```scala
-resolvers += Resolver.jcenterRepo
-resolvers += Resolver.bintrayRepo("char16t", "maven")
-libraryDependencies += "com.manenkov" %% "graphs-preview" % "0.2"
-```
+[Not available from May 01, 2021](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/). Use GitHub Registry.
 
 ***From source code***
 
